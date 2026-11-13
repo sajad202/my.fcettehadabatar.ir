@@ -55,6 +55,15 @@ jobs:
               -keypass Ettehad1405@ \
               -dname "CN=Ettehad Abatar, OU=Media, O=FcEttehadAbatar, L=SowmeehSara, S=Gilan, C=IR"
           fi
+<<<<<<< HEAD
+=======
+          node -e '
+            const fs = require("fs");
+            const m = JSON.parse(fs.readFileSync("twa-manifest.json", "utf8"));
+            m.signingKey = { path: "./release.keystore", alias: "ettehad" };
+            fs.writeFileSync("twa-manifest.json", JSON.stringify(m, null, 2));
+          '
+>>>>>>> e0199c1e6632e0e6f89b85979a61490f3d9814bc
           bubblewrap update --skipVersionUpgrade
 
       - name: Build Signed Android APK
