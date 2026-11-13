@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.EttehadApp" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#06130d</item>
+        <item name="colorPrimaryDark">#06130d</item>
+        <item name="android:windowBackground">#06130d</item>
+        <item name="android:statusBarColor">#06130d</item>
+        <item name="android:navigationBarColor">#06130d</item>
+    </style>
+</resources>

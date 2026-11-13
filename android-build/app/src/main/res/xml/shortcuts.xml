@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="practices"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_practices"
+        android:shortcutLongLabel="@string/shortcut_practices">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="ir.fcettehadabatar.my"
+            android:targetClass="ir.fcettehadabatar.my.MainActivity"
+            android:data="https://my.fcettehadabatar.ir/practices" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="comms"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_comms"
+        android:shortcutLongLabel="@string/shortcut_comms">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="ir.fcettehadabatar.my"
+            android:targetClass="ir.fcettehadabatar.my.MainActivity"
+            android:data="https://my.fcettehadabatar.ir/comms" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="profile"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_profile"
+        android:shortcutLongLabel="@string/shortcut_profile">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="ir.fcettehadabatar.my"
+            android:targetClass="ir.fcettehadabatar.my.MainActivity"
+            android:data="https://my.fcettehadabatar.ir/profile" />
+    </shortcut>
+</shortcuts>

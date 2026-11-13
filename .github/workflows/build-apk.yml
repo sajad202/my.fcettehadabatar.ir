@@ -1,4 +1,4 @@
-name: Build Android APK (TWA)
+name: Build Android APK (Official Release)
 
 on:
   push:
@@ -7,17 +7,12 @@ on:
 
 jobs:
   build:
-    name: Build Android Release & Debug APK
+    name: Build Signed Android Release & Debug APK
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
 
       - name: Set up Java JDK 17
         uses: actions/setup-java@v4
@@ -25,33 +20,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
         with:
-          packages: 'platform-tools platforms;android-34 build-tools;34.0.0 cmdline-tools;latest'
+          gradle-version: '8.5'
 
-      - name: Fix Android SDK paths for Bubblewrap
-        run: |
-          SDK_DIR="/usr/local/lib/android/sdk"
-          if [ ! -d "$SDK_DIR/cmdline-tools/latest" ]; then
-            FIRST_CMD_TOOL=$(find "$SDK_DIR/cmdline-tools" -mindepth 1 -maxdepth 1 -type d | head -n 1)
-            if [ -n "$FIRST_CMD_TOOL" ]; then
-              ln -sfn "$FIRST_CMD_TOOL" "$SDK_DIR/cmdline-tools/latest"
-            fi
-          fi
-
-      - name: Install and Configure Bubblewrap CLI
-        run: |
-          npm install -g @bubblewrap/cli
-          mkdir -p ~/.bubblewrap
-          cat << EOF > ~/.bubblewrap/config.json
-          {
-            "jdkPath": "${JAVA_HOME}",
-            "androidSdkPath": "/usr/local/lib/android/sdk"
-          }
-          EOF
-
-      - name: Prepare Signing Keystore and Update TWA Project
+      - name: Generate Release Keystore & Copy Icons
         working-directory: android-build
         run: |
           if [ ! -f release.keystore ]; then
@@ -65,20 +39,34 @@ jobs:
               -keypass Ettehad1405@ \
               -dname "CN=Ettehad Abatar, OU=Media, O=FcEttehadAbatar, L=SowmeehSara, S=Gilan, C=IR"
           fi
-          bubblewrap update --skipVersionUpgrade
+          mkdir -p app/src/main/res/mipmap-xxxhdpi app/src/main/res/mipmap-xxhdpi app/src/main/res/mipmap-xhdpi app/src/main/res/mipmap-hdpi app/src/main/res/mipmap-mdpi
+          if [ -f icons/icon-512.png ]; then
+            cp icons/icon-512.png app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+            cp icons/icon-512.png app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          fi
+          if [ -f icons/icon-192.png ]; then
+            cp icons/icon-192.png app/src/main/res/mipmap-xhdpi/ic_launcher.png
+            cp icons/icon-192.png app/src/main/res/mipmap-hdpi/ic_launcher.png
+            cp icons/icon-192.png app/src/main/res/mipmap-mdpi/ic_launcher.png
+          fi
 
-      - name: Build Signed Android APK
+      - name: Build Signed Release & Debug APK with Gradle
         working-directory: android-build
-        env:
-          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD || 'Ettehad1405@' }}
-          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD || 'Ettehad1405@' }}
         run: |
-          bubblewrap build
+          gradle assembleRelease assembleDebug --no-daemon
 
-      - name: Upload APK Artifacts
+      - name: Prepare Clean APK Output Files
+        working-directory: android-build
+        run: |
+          mkdir -p output-apk
+          cp app/build/outputs/apk/release/app-release.apk output-apk/EttehadAbatar-v18.0.0-Release-Signed.apk
+          cp app/build/outputs/apk/debug/app-debug.apk output-apk/EttehadAbatar-v18.0.0-Debug.apk
+          keytool -list -v -keystore release.keystore -storepass Ettehad1405@ | grep -E "SHA256:" > output-apk/SHA256-Fingerprint.txt || true
+
+      - name: Upload Official Android APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: EttehadAbatar-Android-APK
           path: |
-            android-build/*.apk
-            android-build/app/build/outputs/apk/**/*.apk
+            android-build/output-apk/*.apk
+            android-build/output-apk/*.txt

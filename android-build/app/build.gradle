@@ -1,0 +1,55 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'ir.fcettehadabatar.my'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "ir.fcettehadabatar.my"
+        minSdk 21
+        targetSdk 34
+        versionCode 18
+        versionName "18.0.0"
+
+        resValue "string", "app_name", "اتحاد من"
+        resValue "string", "full_app_name", "اتحاد من — باشگاه فوتسال اتحاد اباتر"
+        resValue "string", "host_name", "my.fcettehadabatar.ir"
+        resValue "string", "launch_url", "https://my.fcettehadabatar.ir/"
+        resValue "color", "colorPrimary", "#06130d"
+        resValue "color", "colorPrimaryDark", "#06130d"
+        resValue "color", "navigationColor", "#06130d"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../release.keystore")
+            storePassword System.getenv("KEYSTORE_PASSWORD") ?: "Ettehad1405@"
+            keyAlias "ettehad"
+            keyPassword System.getenv("KEY_PASSWORD") ?: "Ettehad1405@"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
+    implementation 'androidx.browser:browser:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}
