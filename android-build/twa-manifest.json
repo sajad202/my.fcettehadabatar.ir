@@ -11,7 +11,16 @@
   "iconUrl": "https://my.fcettehadabatar.ir/assets/icons/icon-512.png",
   "maskableIconUrl": "https://my.fcettehadabatar.ir/assets/icons/maskable-512.png",
   "appVersion": "12.0.0",
+  "appVersionName": "12.0.0",
   "appVersionCode": 12,
+  "display": "standalone",
+  "orientation": "portrait",
+  "minSdkVersion": 21,
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./release.keystore",
+    "alias": "ettehad"
+  },
   "shortcuts": [
     {
       "name": "تمرین‌ها",
@@ -35,18 +44,6 @@
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://my.fcettehadabatar.ir/manifest.webmanifest",
   "fallbackType": "customtabs",
-  "enableSiteSettingsShortcut": true,
-  "isChromeOSOnly": false,
-  "fullScopeUrl": "https://my.fcettehadabatar.ir/",
-  "appVersionName": "12.0.0",
-  "display": "standalone",
-  "orientation": "portrait",
-  "minSdkVersion": 21,
-  "splashScreenFadeOutDuration": 300,
-  "signingKey": {
-    "path": "./release.keystore",
-    "alias": "ettehad"
-  },
   "features": {
     "locationDelegation": {
       "enabled": false
@@ -58,5 +55,8 @@
   "alphaDependencies": {
     "enabled": false
   },
-  "isMetaQuest": false
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://my.fcettehadabatar.ir/"
 }
