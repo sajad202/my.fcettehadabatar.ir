@@ -1,0 +1,76 @@
+{
+    "name": "اتحاد من — باشگاه فوتسال اتحاد اباتر",
+    "short_name": "اتحاد من",
+    "description": "اپلیکیشن رسمی باشگاه فوتسال اتحاد اباتر — تمرین‌ها، مسابقات، اطلاعیه‌ها، چت تیمی و کارت بازیکن",
+    "lang": "fa",
+    "dir": "rtl",
+    "id": "ir.fcettehadabatar.my",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#06130d",
+    "background_color": "#06130d",
+    "categories": [
+        "sports",
+        "lifestyle"
+    ],
+    "icons": [
+        {
+            "src": "assets/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "assets/icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "assets/icons/maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "assets/icons/maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "تمرین‌ها",
+            "url": "./practices",
+            "icons": [
+                {
+                    "src": "assets/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "اطلاعیه‌ها",
+            "url": "./announcements",
+            "icons": [
+                {
+                    "src": "assets/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        },
+        {
+            "name": "پیام‌رسان",
+            "url": "./comms",
+            "icons": [
+                {
+                    "src": "assets/icons/icon-192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ]
+}

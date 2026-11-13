@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "800015917846",
+    "project_id": "ir-fcettehadabatar-my",
+    "storage_bucket": "ir-fcettehadabatar-my.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800015917846:android:e9c171005603a1ede06637",
+        "android_client_info": {
+          "package_name": "ir.fcettehadabatar.my"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeex_FYVKtK_d7o836rNOASqgdBY9Ss0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
