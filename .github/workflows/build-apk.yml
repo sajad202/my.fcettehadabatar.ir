@@ -25,16 +25,18 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
 
       - name: Install and Configure Bubblewrap CLI
         run: |
           npm install -g @bubblewrap/cli
           mkdir -p ~/.bubblewrap
-          cat << EOF > ~/.bubblewrap/config.json
+          cat << 'EOF' > ~/.bubblewrap/config.json
           {
-            "jdkPath": "${JAVA_HOME}",
+            "jdkPath": "/usr/lib/jvm/temurin-17-jdk-amd64",
             "androidSdkPath": "/usr/local/lib/android/sdk"
           }
           EOF
