@@ -1,61 +1,61 @@
 {
-  "packageId": "ir.fcettehadabatar.my",
-  "host": "my.fcettehadabatar.ir",
-  "name": "اتحاد من — باشگاه فوتسال اتحاد اباتر",
-  "launcherName": "اتحاد من",
-  "themeColor": "#06130d",
-  "navigationColor": "#06130d",
-  "backgroundColor": "#06130d",
-  "enableNotifications": true,
-  "startUrl": "/",
-  "iconUrl": "https://my.fcettehadabatar.ir/assets/icons/icon-512.png",
-  "maskableIconUrl": "https://my.fcettehadabatar.ir/assets/icons/maskable-512.png",
-  "appVersion": "12.0.0",
-  "appVersionCode": 12,
-  "shortcuts": [
-    {
-      "name": "تمرین‌ها",
-      "shortName": "تمرین‌ها",
-      "url": "/practices",
-      "chosenIconUrl": "https://my.fcettehadabatar.ir/assets/icons/icon-192.png"
+    "packageId": "ir.fcettehadabatar.my",
+    "host": "my.fcettehadabatar.ir",
+    "name": "اتحاد من — باشگاه فوتسال اتحاد اباتر",
+    "launcherName": "اتحاد من",
+    "themeColor": "#06130d",
+    "navigationColor": "#06130d",
+    "backgroundColor": "#06130d",
+    "enableNotifications": true,
+    "startUrl": "/",
+    "iconUrl": "https://my.fcettehadabatar.ir/assets/icons/icon-512.png",
+    "maskableIconUrl": "https://my.fcettehadabatar.ir/assets/icons/maskable-512.png",
+    "appVersion": "12.0.0",
+    "appVersionCode": 12,
+    "display": "standalone",
+    "orientation": "portrait",
+    "minSdkVersion": 21,
+    "splashScreenFadeOutDuration": 300,
+    "signingKey": {
+        "path": "./release.keystore",
+        "alias": "ettehad"
     },
-    {
-      "name": "پیام‌رسان",
-      "shortName": "پیام‌رسان",
-      "url": "/comms",
-      "chosenIconUrl": "https://my.fcettehadabatar.ir/assets/icons/icon-192.png"
+    "shortcuts": [
+        {
+            "name": "تمرین‌ها",
+            "shortName": "تمرین‌ها",
+            "url": "/practices",
+            "chosenIconUrl": "https://my.fcettehadabatar.ir/assets/icons/icon-192.png"
+        },
+        {
+            "name": "پیام‌رسان",
+            "shortName": "پیام‌رسان",
+            "url": "/comms",
+            "chosenIconUrl": "https://my.fcettehadabatar.ir/assets/icons/icon-192.png"
+        },
+        {
+            "name": "پروفایل من",
+            "shortName": "پروفایل",
+            "url": "/profile",
+            "chosenIconUrl": "https://my.fcettehadabatar.ir/assets/icons/icon-192.png"
+        }
+    ],
+    "generatorApp": "bubblewrap-cli",
+    "webManifestUrl": "https://my.fcettehadabatar.ir/manifest.webmanifest",
+    "fallbackType": "customtabs",
+    "features": {
+        "locationDelegation": {
+            "enabled": false
+        },
+        "playBilling": {
+            "enabled": false
+        }
     },
-    {
-      "name": "پروفایل من",
-      "shortName": "پروفایل",
-      "url": "/profile",
-      "chosenIconUrl": "https://my.fcettehadabatar.ir/assets/icons/icon-192.png"
-    }
-  ],
-  "generatorApp": "bubblewrap-cli",
-  "webManifestUrl": "https://my.fcettehadabatar.ir/manifest.webmanifest",
-  "fallbackType": "customtabs",
-  "enableSiteSettingsShortcut": true,
-  "isChromeOSOnly": false,
-  "fullScopeUrl": "https://my.fcettehadabatar.ir/",
-  "display": "standalone",
-  "orientation": "portrait",
-  "minSdkVersion": 21,
-  "splashScreenFadeOutDuration": 300,
-  "signingKey": {
-    "path": "./release.keystore",
-    "alias": "ettehad"
-  },
-  "features": {
-    "locationDelegation": {
-      "enabled": false
+    "alphaDependencies": {
+        "enabled": false
     },
-    "playBilling": {
-      "enabled": false
-    }
-  },
-  "alphaDependencies": {
-    "enabled": false
-  },
-  "isMetaQuest": false
+    "enableSiteSettingsShortcut": true,
+    "isChromeOSOnly": false,
+    "isMetaQuest": false,
+    "fullScopeUrl": "https://my.fcettehadabatar.ir/"
 }
