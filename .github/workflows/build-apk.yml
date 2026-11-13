@@ -32,12 +32,19 @@ jobs:
 
       - name: Install and Configure Bubblewrap CLI
         run: |
+          SDK_DIR="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
+          if [ ! -d "$SDK_DIR/cmdline-tools/latest" ]; then
+            FIRST_CMD_TOOL=$(find "$SDK_DIR/cmdline-tools" -mindepth 1 -maxdepth 1 -type d | head -n 1)
+            if [ -n "$FIRST_CMD_TOOL" ]; then
+              ln -sfn "$FIRST_CMD_TOOL" "$SDK_DIR/cmdline-tools/latest"
+            fi
+          fi
           npm install -g @bubblewrap/cli
           mkdir -p ~/.bubblewrap
-          cat << 'EOF' > ~/.bubblewrap/config.json
+          cat << EOF > ~/.bubblewrap/config.json
           {
-            "jdkPath": "/usr/lib/jvm/temurin-17-jdk-amd64",
-            "androidSdkPath": "/usr/local/lib/android/sdk"
+            "jdkPath": "$JAVA_HOME",
+            "androidSdkPath": "$SDK_DIR"
           }
           EOF
 
