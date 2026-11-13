@@ -28,25 +28,23 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v4
         with:
-          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
+          packages: 'platform-tools platforms;android-34 build-tools;34.0.0 cmdline-tools;latest'
 
-      - name: Install and Configure Bubblewrap CLI
+      - name: Configure Bubblewrap Environment
         run: |
-          SDK_DIR="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
-          if [ ! -d "$SDK_DIR/cmdline-tools/latest" ]; then
-            FIRST_CMD_TOOL=$(find "$SDK_DIR/cmdline-tools" -mindepth 1 -maxdepth 1 -type d | head -n 1)
-            if [ -n "$FIRST_CMD_TOOL" ]; then
-              ln -sfn "$FIRST_CMD_TOOL" "$SDK_DIR/cmdline-tools/latest"
-            fi
-          fi
           npm install -g @bubblewrap/cli
           mkdir -p ~/.bubblewrap
+          
+          # Ensure correct JDK and SDK paths are registered for Bubblewrap
           cat << EOF > ~/.bubblewrap/config.json
           {
-            "jdkPath": "$JAVA_HOME",
-            "androidSdkPath": "$SDK_DIR"
+            "jdkPath": "${JAVA_HOME}",
+            "androidSdkPath": "${ANDROID_HOME}"
           }
           EOF
+          
+          echo "Configured Bubblewrap with:"
+          cat ~/.bubblewrap/config.json
 
       - name: Prepare Signing Keystore and Update TWA Project
         working-directory: android-build
