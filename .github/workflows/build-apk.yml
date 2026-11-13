@@ -25,18 +25,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v4
-        with:
-          packages: 'platform-tools platforms;android-34 build-tools;34.0.0'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
 
       - name: Install and Configure Bubblewrap CLI
         run: |
           npm install -g @bubblewrap/cli
           mkdir -p ~/.bubblewrap
-          cat << 'EOF' > ~/.bubblewrap/config.json
+          cat << EOF > ~/.bubblewrap/config.json
           {
-            "jdkPath": "/usr/lib/jvm/temurin-17-jdk-amd64",
+            "jdkPath": "${JAVA_HOME}",
             "androidSdkPath": "/usr/local/lib/android/sdk"
           }
           EOF
@@ -55,15 +53,6 @@ jobs:
               -keypass Ettehad1405@ \
               -dname "CN=Ettehad Abatar, OU=Media, O=FcEttehadAbatar, L=SowmeehSara, S=Gilan, C=IR"
           fi
-<<<<<<< HEAD
-=======
-          node -e '
-            const fs = require("fs");
-            const m = JSON.parse(fs.readFileSync("twa-manifest.json", "utf8"));
-            m.signingKey = { path: "./release.keystore", alias: "ettehad" };
-            fs.writeFileSync("twa-manifest.json", JSON.stringify(m, null, 2));
-          '
->>>>>>> e0199c1e6632e0e6f89b85979a61490f3d9814bc
           bubblewrap update --skipVersionUpgrade
 
       - name: Build Signed Android APK
